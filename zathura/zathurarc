@@ -1,0 +1,25 @@
+# Dvorak compatibility
+map h scroll left
+map t scroll down
+map n scroll up
+map s scroll right
+map l search forward
+map L search backward
+
+# Options
+set sandbox none
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding        1
+set selection-clipboard clipboard
+
+# Shortcuts
+map i zoom in
+map d zoom out
+map u scroll half-up
+map o srcoll half-down
+map c recolor
+map r reload
+map e quit
+map P print
+map R rotate

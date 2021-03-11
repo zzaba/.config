@@ -1,0 +1,17 @@
+# xsession conform to XDG
+USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
+USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
+ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
+ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+
+xrdb -load "XDG_CONFIG_HOME"/X11/xresources &
+setxkbmap -layout us -variant dvp -option caps:swapescape -option ctrl:swap_lalt_lctl -option compose:menu &
+xset r rate 300 50 &
+xbanish &
+
+picom --experimental-backends \
+      --backend glx \
+      --vsync \
+      --shadow &
+
+exec awesome

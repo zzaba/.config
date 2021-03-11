@@ -1,0 +1,50 @@
+#!/bin/sh
+
+[ -x "$(command -v vim)" ] && alias vi="vim"
+
+alias .2="../.."
+alias cd..="cd .."
+alias cp="cp -rv"
+alias diff="diff -wy --left-column"
+alias grep="grep --color"
+alias ls="ls -h --group-directories-first --color" sl="ls"
+alias mv="mv -v"
+alias mkd="mkdir -pv"
+alias rm="rm -fv"
+alias xi="doas xbps-install"
+alias xq="xbps-query"
+alias xr="doas xbps-remove -R"
+alias yt="youtube-dl"
+alias yta="youtube-dl -xf bestaudio/best"
+alias z="zathura"
+
+bak () {
+	for file do
+		cp "$file" "$file.bak"
+	done
+}
+
+copy () {
+	cat "$@" | xclip -selection clipboard
+}
+
+ixio () {
+	cat "$@" | curl -F 'f:1=<-' ix.io | xclip -selection clipboard
+}
+
+oxo () {
+	curl -F "file=@$1" 0x0.st | xclip -selection clipboard
+}
+
+PS4='[$EPOCHREALTIME] '; PS1='#'; (( USER_ID )) && PS1='$'; PS1=$'\001\r''${|
+	\\builtin typeset e=$?
+
+	(( e )) && REPLY+="$e|"
+
+	\\builtin typeset d=${PWD:-?}/ p=~; [[ $p = ?(*/) ]] || d=${d/#$p\//\~/}
+	d=${d%/}; \\builtin typeset m=${%d} n p=...; (( m > 0 )) || m=${#d}
+	(( m > (n = (COLUMNS/3 < 7 ? 7 : COLUMNS/3)) )) && d=${d:(-n)} || p=
+	REPLY+=$p$d
+
+	\\builtin return $e
+} '"$PS1 "
